@@ -37,6 +37,7 @@ export default defineConfig({
     outDir: `dist/${config.default.identifier}`,
     sourcemap: true,
     minify: true,
+    
     lib: {
       entry: 'src/main.ts',
       fileName: 'plugin',
@@ -54,6 +55,9 @@ export default defineConfig({
     cors: true,
   },
   define: {
+    'process.env': JSON.stringify({
+      cider: '2',
+    }),
     'cplugin': {
       ce_prefix: packageJson?.plugin?.ce_prefix || 'mce',
       identifier: packageJson?.plugin?.identifier || 'mce',
