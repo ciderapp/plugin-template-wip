@@ -35,19 +35,13 @@ export default defineConfig({
   ],
   build: {
     outDir: `dist/${config.default.identifier}`,
-    sourcemap: true,
-    minify: true,
-    
+    minify: 'esbuild',
     lib: {
       entry: 'src/main.ts',
       fileName: 'plugin',
       formats: ['es'],
     },
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      }
-    },
+
   },
   server: {
     port: 3058,

@@ -33,8 +33,10 @@ interface Window {
    */
   APP_VERSION: string,
 
-  MusicKit: any
+  MusicKit: any,
+
 }
+
 /**
  * MusicKit JS API
  * 

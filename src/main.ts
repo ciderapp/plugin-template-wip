@@ -8,6 +8,7 @@ import CustomPage from "./pages/CustomPage.vue";
 import { customElementName } from "./utils";
 import config from './plugin.config.ts'
 import { addCustomButton } from "./api/CustomButton";
+import { useCiderAudio } from "./api/CiderAudio.ts";
 
 /**
  * Custom Elements that will be registered in the app
@@ -70,6 +71,11 @@ export default {
             location: 'chrome-top/right',
             title: 'Click me!',
             menuElement: customElementName('hello-world'),
+        })
+
+        const audio = useCiderAudio();
+        audio.subscribe('ready', () => {
+            console.log("CiderAudio is ready!", audio.context)
         })
 
 
