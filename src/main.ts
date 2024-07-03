@@ -64,10 +64,11 @@ export default {
         addMainMenuEntry({
             label: "Modal example",
             onClick() {
-                const {closeDialog, openDialog, dialogElement, addClass} = createModal({
+                const {closeDialog, openDialog, dialogElement} = createModal({
                     escClose: true,
                 })
                 const content= document.createElement(customElementName('modal-example'));
+                // @ts-ignore
                 content._props.closeFn = closeDialog;
                 dialogElement.appendChild(content);
                 openDialog();                
