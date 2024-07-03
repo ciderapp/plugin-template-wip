@@ -21,4 +21,8 @@ declare namespace __PLUGINSYS__ {
             buttons: import("../CustomButton").CustomButtonOptions[]
         }
     }
+
+    const Quasar: {
+        Dialog: any;
+    }
 }

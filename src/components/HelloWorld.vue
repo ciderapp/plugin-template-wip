@@ -4,7 +4,7 @@ import { count } from '../store';
 </script>
 
 <template>
-  <div>
+  <div class="plugin-base">
     Hello world!
     <button @click="count++">count is: {{ count }}</button>
   </div>

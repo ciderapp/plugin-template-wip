@@ -5,7 +5,7 @@ const cfg = useConfig()
 </script>
 
 <template>
-  <div class="q-px-lg">
+  <div class="q-px-lg plugin-base">
     Custom settings page
     <div>
       <button @click="cfg.count++">config count is: {{ cfg.count }}</button>

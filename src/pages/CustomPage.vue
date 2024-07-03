@@ -8,7 +8,7 @@ const cfg = computed(() => {
 </script>
 
 <template>
-  <div class="q-pa-lg">
+  <div class="q-pa-lg plugin-base">
     <h1 class="apple-heading">
         My Custom Page
     </h1>

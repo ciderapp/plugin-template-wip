@@ -9,6 +9,8 @@ import { customElementName } from "./utils";
 import config from './plugin.config.ts'
 import { addCustomButton } from "./api/CustomButton";
 import { useCiderAudio } from "./api/CiderAudio.ts";
+import { createModal } from "./api/Modal.ts";
+import ModalExample from "./components/ModalExample.vue";
 
 /**
  * Custom Elements that will be registered in the app
@@ -23,6 +25,9 @@ export const CustomElements
             shadowRoot: false,
         }),
     'settings': defineCustomElement(MySettings, {
+        shadowRoot: false
+    }),
+    'modal-example': defineCustomElement(ModalExample, {
         shadowRoot: false
     }),
     'page-helloworld': defineCustomElement(CustomPage, {
@@ -53,6 +58,19 @@ export default {
                 goToPage({
                     name: 'page-helloworld'
                 });
+            },
+        })
+
+        addMainMenuEntry({
+            label: "Modal example",
+            onClick() {
+                const {closeDialog, openDialog, dialogElement, addClass} = createModal({
+                    escClose: true,
+                })
+                const content= document.createElement(customElementName('modal-example'));
+                content._props.closeFn = closeDialog;
+                dialogElement.appendChild(content);
+                openDialog();                
             },
         })
 
