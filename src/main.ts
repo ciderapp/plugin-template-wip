@@ -12,6 +12,7 @@ import { useCiderAudio } from "./api/CiderAudio.ts";
 import { createModal } from "./api/Modal.ts";
 import ModalExample from "./components/ModalExample.vue";
 
+
 /**
  * Custom Elements that will be registered in the app
  */
@@ -46,6 +47,9 @@ export default {
      * Initial setup function that is executed when the plugin is loaded
      */
     setup() {
+        // Temp workaround
+        // @ts-ignore
+        window.__VUE_OPTIONS_API__ = true
         for (const [key, value] of Object.entries(CustomElements)) {
             const _key = key as keyof typeof CustomElements;
             customElements.define(customElementName(_key), value)
@@ -64,14 +68,14 @@ export default {
         addMainMenuEntry({
             label: "Modal example",
             onClick() {
-                const {closeDialog, openDialog, dialogElement} = createModal({
+                const { closeDialog, openDialog, dialogElement } = createModal({
                     escClose: true,
                 })
-                const content= document.createElement(customElementName('modal-example'));
+                const content = document.createElement(customElementName('modal-example'));
                 // @ts-ignore
                 content._props.closeFn = closeDialog;
                 dialogElement.appendChild(content);
-                openDialog();                
+                openDialog();
             },
         })
 
