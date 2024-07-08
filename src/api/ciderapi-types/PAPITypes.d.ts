@@ -4,7 +4,7 @@ declare namespace PAPITypes {
     }
     declare namespace Shell {
         type LayoutTypeChanged = {
-            type: 'immersive' | 'miniplayer' | 'normal'
+            type: 'immersive' | 'miniplayer' | 'browser'
         }
         type ImmersiveOpened = {}
         type ImmersiveClosed = {}
