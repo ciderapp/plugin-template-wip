@@ -11,6 +11,7 @@ import { addCustomButton } from "./api/CustomButton";
 import { useCiderAudio } from "./api/CiderAudio.ts";
 import { createModal } from "./api/Modal.ts";
 import ModalExample from "./components/ModalExample.vue";
+import { useEvents } from "./api/Events.ts";
 
 
 /**
@@ -54,6 +55,12 @@ export default {
             const _key = key as keyof typeof CustomElements;
             customElements.define(customElementName(_key), value)
         }
+
+        useEvents().addEventListener('shell:layout_type_changed', (data: PAPITypes.Shell.LayoutTypeChanged) => {
+            if (data.type === 'immersive') {
+                console.log('Layout changed to immersive')
+            }
+        })
 
         // Here we add a new entry to the main menu
         addMainMenuEntry({
