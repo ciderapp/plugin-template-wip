@@ -1,3 +1,10 @@
+interface RenderComponentOptions {
+    component: import('../ComponentNames').ComponentNames;
+    props?: Record<string, any>;
+    element: Element;
+}
+
+
 declare namespace __PLUGINSYS__ {
     const Components: {
         MainMenu: {
@@ -29,5 +36,14 @@ declare namespace __PLUGINSYS__ {
     const PAPIInstance: {
         addEventListener(event: import('./PAPIEvents').PAPIEvents, cb: (e: any) => void, opts?: Partial<{ once: boolean, passive: boolean, capture: boolean }>): void
         removeEventListener(event: import('./PAPIEvents').PAPIEvents, cb: (e: any) => void): void
+    }
+
+    const App: {
+        Components: import('../ComponentNames').ComponentNames[]
+        RenderComponent: (opts: RenderComponentOptions) => void
+        vue: {
+            render: (component: any, element: Element) => void
+            h: (component: any, props: Record<string, any>, children: any) => void
+        }
     }
 }
