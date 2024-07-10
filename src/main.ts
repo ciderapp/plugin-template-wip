@@ -11,7 +11,8 @@ import { addCustomButton } from "./api/CustomButton";
 import { useCiderAudio } from "./api/CiderAudio.ts";
 import { createModal } from "./api/Modal.ts";
 import ModalExample from "./components/ModalExample.vue";
-import { subscribeEvent } from "./api/Events.ts";
+import { addImmersiveLayout } from "./api/ImmersiveLayout.ts";
+import CustomImmersiveLayout from "./components/CustomImmersiveLayout.vue";
 
 
 /**
@@ -34,6 +35,9 @@ export const CustomElements
     }),
     'page-helloworld': defineCustomElement(CustomPage, {
         shadowRoot: false
+    }),
+    'immersive-layout': defineCustomElement(CustomImmersiveLayout, {
+        shadowRoot: false,
     })
 }
 
@@ -55,6 +59,13 @@ export default {
             const _key = key as keyof typeof CustomElements;
             customElements.define(customElementName(_key), value)
         }
+
+        addImmersiveLayout({
+            name: "My layout",
+            identifier: "my-layout",
+            component: customElementName('immersive-layout'),
+            type: 'normal',
+        })
 
         // Here we add a new entry to the main menu
         addMainMenuEntry({

@@ -17,9 +17,15 @@ declare namespace __PLUGINSYS__ {
             removeMenuItem(item: import("../MenuEntry").MenuItem): void
             items: import("../MenuEntry").MenuItem[]
         },
+        ImmersiveLayouts: {
+            addLayout(layout: import("../ImmersiveLayout.ts").CustomImmersiveLayout): void
+            removeLayout(layout: import("../ImmersiveLayout.ts").CustomImmersiveLayout): void
+            layouts: import("../ImmersiveLayout.ts").CustomImmersiveLayout[]
+        },
         MediaItemContextMenu: {
             addMenuItem(item: import("../MenuEntry").MenuItem): import("../MenuEntry").MenuItem
             removeMenuItem(item: import("../MenuEntry").MenuItem): void
+            removeLayoutByIdentifier(identifier: string): void
             items: import("../MenuEntry").MenuItem[]
         },
         CustomButtons: {

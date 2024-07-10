@@ -35,7 +35,6 @@ watch(props, create);
 
 <style scoped>
 .__CComponent__ {
-  opacity: 0.5;
   display: contents;
 }
 </style>
