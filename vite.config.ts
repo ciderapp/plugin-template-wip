@@ -41,7 +41,7 @@ export default defineConfig({
       fileName: 'plugin',
       formats: ['es'],
     },
-
+    target: ['es2020', 'chrome108'],
   },
   server: {
     port: 3058,
