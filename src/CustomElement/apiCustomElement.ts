@@ -41,6 +41,7 @@ export interface DefineCustomElementConfig {
    * @default true
    */
   shadowRoot?: boolean
+  appContext?: any
 }
 
 // defineCustomElement provides the same type inference as defineComponent
@@ -452,12 +453,18 @@ export class VueElement extends BaseClass {
       }
     }
     const vnode = createVNode(this._def, extend({}, this._props), childs)
+
     if (!this._instance) {
       vnode.ce = instance => {
         this._instance = instance
         if (this._config.shadowRoot) {
           instance.isCE = true
         }
+
+        if (this._config.appContext) {
+          instance.appContext = this._config.appContext._context
+        }
+
         // HMR
         if (__DEV__) {
           instance.ceReload = newStyles => {
