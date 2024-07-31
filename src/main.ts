@@ -1,4 +1,4 @@
-import { defineCustomElement } from "./CustomElement/apiCustomElement";
+import { defineCustomElement } from "./api/CustomElement/apiCustomElement.ts";
 import { addImmersiveMenuEntry, addMainMenuEntry, addMediaItemContextMenuEntry } from "./api/MenuEntry";
 import { goToPage } from "./api/Page";
 import { PluginAPI } from "./api/PluginAPI";
@@ -13,7 +13,15 @@ import { createModal } from "./api/Modal.ts";
 import ModalExample from "./components/ModalExample.vue";
 import { addImmersiveLayout } from "./api/ImmersiveLayout.ts";
 import CustomImmersiveLayout from "./components/CustomImmersiveLayout.vue";
+import { createApp, h } from 'vue'
+import { createPinia } from "pinia";
 
+/**
+ * Initializing a Vue app instance so we can use things like Pinia.
+ */
+const pinia = createPinia()
+const pluginApp = createApp(h('div'));
+pluginApp.use(pinia)
 
 /**
  * Custom Elements that will be registered in the app
@@ -26,18 +34,23 @@ export const CustomElements
              * Disabling the shadow root DOM so that we can inject styles from the DOM
              */
             shadowRoot: false,
+            appContext: pluginApp,
         }),
     'settings': defineCustomElement(MySettings, {
-        shadowRoot: false
+        shadowRoot: false,
+        appContext: pluginApp,
     }),
     'modal-example': defineCustomElement(ModalExample, {
-        shadowRoot: false
+        shadowRoot: false,
+        appContext: pluginApp,
     }),
     'page-helloworld': defineCustomElement(CustomPage, {
-        shadowRoot: false
+        shadowRoot: false,
+        appContext: pluginApp,
     }),
     'immersive-layout': defineCustomElement(CustomImmersiveLayout, {
         shadowRoot: false,
+        appContext: pluginApp,
     })
 }
 
@@ -102,7 +115,7 @@ export default {
 
         // Here we add a custom button to the top right of the chrome
         addCustomButton({
-            element: '🤯',
+            element: '♥',
             location: 'chrome-top/right',
             title: 'Click me!',
             menuElement: customElementName('hello-world'),

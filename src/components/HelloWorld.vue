@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { count } from '../store';
+import { useMainStore } from '../stores/main';
+
+const store = useMainStore();
 
 </script>
 
 <template>
   <div class="plugin-base">
     Hello world!
-    <button @click="count++">count is: {{ count }}</button>
+    <br>
+    <button class="c-btn primary" @click="store.count++">count is: {{ store.count }}</button>
+    <br>
+    (doubled: {{ store.doubled }})
   </div>
 </template>
 
