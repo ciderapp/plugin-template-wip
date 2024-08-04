@@ -17,7 +17,7 @@
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
     "@vitejs/plugin-vue": "^5.0.5",
-    "adm-zip": "^0.5.12",
+    "adm-zip": "0.5.9",
     "pinia": "^2.2.0",
     "sass": "^1.77.6",
     "tsx": "^4.16.5",
