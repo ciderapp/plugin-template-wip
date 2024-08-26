@@ -35,6 +35,12 @@ declare namespace __PLUGINSYS__ {
         }
     }
 
+    const ExternalMessages: {
+        addEventListener(event: string, cb: (e: any) => void, opts?: Partial<{ once: boolean, passive: boolean, capture: boolean }>): void
+        removeEventListener(event: string, cb: (e: any) => void): void
+        dispatchEvent(event: string, data: any): void
+    }
+
     const Quasar: {
         Dialog: any;
     }
