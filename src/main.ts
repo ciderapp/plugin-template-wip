@@ -1,3 +1,4 @@
+import { defineCustomElement } from "./api/CustomElement/apiCustomElement.ts";
 import { addImmersiveMenuEntry, addMainMenuEntry, addMediaItemContextMenuEntry } from "./api/MenuEntry";
 import { goToPage } from "./api/Page";
 import { PluginAPI } from "./api/PluginAPI";
@@ -12,21 +13,15 @@ import { createModal } from "./api/Modal.ts";
 import ModalExample from "./components/ModalExample.vue";
 import { addImmersiveLayout } from "./api/ImmersiveLayout.ts";
 import CustomImmersiveLayout from "./components/CustomImmersiveLayout.vue";
-import { defineCustomElement } from 'vue'
-import type { App } from 'vue'
+import { createApp, h } from 'vue'
 import { createPinia } from "pinia";
 
 /**
  * Initializing a Vue app instance so we can use things like Pinia.
  */
 const pinia = createPinia()
-
-/**
- * Function that configures the app instances of the custom elements
- */
-function configureApp(app: App) {
-    app.use(pinia)
-}
+const pluginApp = createApp(h('div'));
+pluginApp.use(pinia)
 
 /**
  * Custom Elements that will be registered in the app
@@ -39,23 +34,23 @@ export const CustomElements
              * Disabling the shadow root DOM so that we can inject styles from the DOM
              */
             shadowRoot: false,
-            configureApp
+            appContext: pluginApp,
         }),
     'settings': defineCustomElement(MySettings, {
         shadowRoot: false,
-        configureApp
+        appContext: pluginApp,
     }),
     'modal-example': defineCustomElement(ModalExample, {
         shadowRoot: false,
-        configureApp
+        appContext: pluginApp,
     }),
     'page-helloworld': defineCustomElement(CustomPage, {
         shadowRoot: false,
-        configureApp
+        appContext: pluginApp,
     }),
     'immersive-layout': defineCustomElement(CustomImmersiveLayout, {
         shadowRoot: false,
-        configureApp
+        appContext: pluginApp,
     })
 }
 
